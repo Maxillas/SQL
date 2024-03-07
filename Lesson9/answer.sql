@@ -1,4 +1,4 @@
-/* #3 */
+/* #1 */
 
 SELECT Products.ProductName, Products.UnitPrice
 FROM Products, [Order Details]

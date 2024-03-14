@@ -4,7 +4,7 @@ WHERE Quantity > 50
 
 UPDATE [northwind].[dbo].[Contacts] /*Work only that, "Contact" without full path does not work*/
 SET City = 'Piter', Country = 'Russia'
-WHERE City = 'Berlin', Country = 'Germany'
+WHERE City = 'Berlin' OR Country = 'Germany'
 
 INSERT INTO Shippers(CompanyName, Phone)
 VALUES ('Gazprom', '800-535-35-35'), 

@@ -15,11 +15,25 @@ SELECT dwarf_id FROM Dwarves
 JOIN Items ON Dwarves.dwarf_id = Items.owner_id
 GROUP BY dwarf_id
 
+/*Рефлексия: 
+	SELECT DISTINCT D.*
+    FROM Dwarves D
+    JOIN Items I ON D.dwarf_id = I.owner_id
+    WHERE I.type = 'weapon';
+
+Не добавил условия WHERE, подумал, что при операции GROUP BY отрежуться лишние ячейки
+*/
 /*4. Получите количество задач для каждого гнома, сгруппировав их по статусу.*/
 
 SELECT COUNT(task_id) FROM Tasks
 JOIN Dwarves ON Tasks.assigned_to = Dwarves.dwarf_id 
 GROUP BY status
+/*Рефлексия: 
+    SELECT assigned_to, status, COUNT(*) AS task_count
+    FROM Tasks
+    GROUP BY assigned_to, status;
+	Добавил лишний JOIN, можно было обойтись без него
+*/
 
 /*5. Найдите все задачи, которые были назначены гномам из отряда с именем "Guardians".*/
 
@@ -29,7 +43,15 @@ JOIN (SELECT dwarf_id FROM Dwarves
 	WHERE name = "Guardians"
 	) AS d
 ON Tasks.assigned_to = d.dwarf_id
+/* Рефлексия 
+    SELECT T.*
+    FROM Tasks T
+    JOIN Dwarves D ON T.assigned_to = D.dwarf_id
+    JOIN Squads S ON D.squad_id = S.squad_id
+    WHERE S.name = 'Guardians';
 
+	Я сделал через вложенный запрос, что заметно сложнее по производительности
+*/
 /*6. Выведите всех гномов и их ближайших родственников, указав тип родственных отношений. */
 
 SELECT d1.dwarf_id as D, d2.related_to AS R, R.relationships FROM Relationships R

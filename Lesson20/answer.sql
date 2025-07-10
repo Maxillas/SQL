@@ -1,49 +1,9 @@
-Напишите запрос, который определит наиболее и наименее успешные экспедиции, учитывая:
-- Соотношение выживших участников к общему числу
-- Ценность найденных артефактов
-- Количество обнаруженных новых мест
-- Успешность встреч с существами (отношение благоприятных исходов к неблагоприятным)
-- Опыт, полученный участниками (сравнение навыков до и после) 
+Рефлексия:
+1. Название локации взял не из того поля
+2. Не учел что discovered_sites должны быть в обратном порядке
+3. Неверно указал условия для успешных экспедиций
+4. Подход с глобальными json object оказался неверным, в эталонных решениях другой способ выдачи
 
-
-[
-  {
-    "expedition_id": 2301,
-    "destination": "Ancient Ruins",
-    "status": "Completed",
-    "survival_rate": 71.43,
-    "artifacts_value": 28500,
-    "discovered_sites": 3,
-    "encounter_success_rate": 66.67,
-    "skill_improvement": 14,
-    "expedition_duration": 44,
-    "overall_success_score": 0.78,
-    "related_entities": {
-      "member_ids": [102, 104, 107, 110, 112, 115, 118],
-      "artifact_ids": [2501, 2502, 2503],
-      "site_ids": [2401, 2402, 2403]
-    }
-  }
-]
-  },
-  {
-    "expedition_id": 2305,
-    "destination": "Deep Caverns",
-    "status": "Completed",
-    "survival_rate": 80.00,
-    "artifacts_value": 42000,
-    "discovered_sites": 2,
-    "encounter_success_rate": 83.33,
-    "skill_improvement": 18,
-    "expedition_duration": 38,
-    "overall_success_score": 0.85,
-    "related_entities": {
-      "member_ids": [103, 105, 108, 113, 121],
-      "artifact_ids": [2508, 2509, 2510, 2511],
-      "site_ids": [2410, 2411]
-    }
-  },
-  {
 # Task 
 SELECT 
     JSON_OBJECT(

@@ -80,7 +80,6 @@ SELECT
   
   cs.average_craftsdwarf_skill,
   cs.skill_quality_correlation,
-  
   we.related_entities
 
 FROM

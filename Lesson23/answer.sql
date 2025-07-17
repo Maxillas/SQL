@@ -1,6 +1,6 @@
 # До рефлексии
 WITH 
--- Общая статистика по торговле
+
 trade_overview AS (
   SELECT
     COUNT(DISTINCT c.civilization_type) AS total_trading_partners,
@@ -10,7 +10,6 @@ trade_overview AS (
   JOIN caravans c ON tt.caravan_id = c.caravan_id
 ),
 
--- Данные по торговле с цивилизациями
 civilization_trade AS (
   SELECT
     c.civilization_type,
@@ -32,7 +31,6 @@ civilization_trade AS (
   GROUP BY c.civilization_type
 ),
 
--- Критические зависимости от импорта
 import_dependencies AS (
   SELECT
     cg.material_type,
@@ -50,7 +48,6 @@ import_dependencies AS (
   LIMIT 5
 ),
 
--- Эффективность экспорта
 export_stats AS (
   SELECT
     w.type AS workshop_type,
@@ -69,7 +66,6 @@ export_stats AS (
   ORDER BY export_ratio DESC
 ),
 
--- Динамика торговли по кварталам
 trade_timeline AS (
   SELECT
     EXTRACT(YEAR FROM tt.date) AS year,
@@ -83,7 +79,6 @@ trade_timeline AS (
   ORDER BY year, quarter
 )
 
--- Финальный результат в требуемом формате JSON
 SELECT
   JSON_BUILD_OBJECT(
     'total_trading_partners', to.total_trading_partners,

@@ -1,4 +1,4 @@
-#До рефлексии
+# До рефлексии
 WITH 
 attack_stats AS (
     SELECT
